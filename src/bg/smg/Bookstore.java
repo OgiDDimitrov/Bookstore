@@ -14,6 +14,15 @@ public class Bookstore {
         this.books = books;
     }
 
+    public void sell(Book book){
+        int av = book.getAvailable();
+        if(av>0){
+            System.out.println("Prodavame...." + book.toString() + book.getPrice());
+            book.setAvailable(av-1);
+        } else {
+            System.out.println("nqma....");
+        }
+    }
 
     // getters and setters
     public List<Book> getBooks() {

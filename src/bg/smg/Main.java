@@ -5,36 +5,58 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        List<Book> animals = new ArrayList<>();
+
+        List<Book> books = new ArrayList<>();
 
         Scanner sc = new Scanner(System.in);
-        int numberAnimals = sc.nextInt();
+        int numBooks = sc.nextInt();
 
-        for(int i = 0 ; i< numberAnimals; i++) {
+        for(int i = 0 ; i< numBooks; i++) {
             Book book;
-            System.out.println("Въведете данни за животно: <тип-Cat/Dog/Duck/Fish/HummingBird/Zebra> <име> <възраст> <цвят> <пол> <вид храна-МЕАТ/NUTS/FISH_FOOD/GRASS> <диво ли е> <бр крака>");
-            AnimalType type = AnimalType.valueOf(sc.next().toUpperCase());
+            System.out.println("Въведете tip kniga: <тип-Book/Children_book/Comic_book> ");
+            BookType type = BookType.valueOf(sc.next().toUpperCase());
             switch(type) {
-                case CAT: book = new Cat(); break;
-                case DOG: book = new Dog(); break;
-                default: book = new Book();
+                case CHILDREN_BOOK: book = new ChildrenBook(); break;
+                case COMIC_BOOK: book = new ComicBook(); break;
+                default:
+                    System.out.println("Vuvedohte.....");
+                    book = new Book();
+                    break;
             }
-            book.setType(type);
-            book.setName(sc.next());
-            book.setAge(sc.nextInt());
-            book.setColor(sc.next());
-            book.setGender(sc.next());
-            BookType foodType = FoodType.valueOf(sc.next().toUpperCase());
-            book.setFood(foodType);
-            book.setWild(sc.nextBoolean());
-            book.setNumberOfLegs(sc.nextShort());
-            animals.add(book);
+            System.out.println("");
+            book.setAvailable(sc.nextInt());
+
+            System.out.println("");
+            book.setTitle(sc.next());
+
+            System.out.println("");
+            Author author = new Author();
+            author.setName(sc.next());
+
+            System.out.println("");
+            author.setAge(sc.nextInt());
+
+            book.setAuthor(author);
+            book.setOriginalPrice(sc.nextDouble());
+
+            if(book instanceof ChildrenBook) {
+                System.out.println("");
+                ((ChildrenBook) book).setAge(sc.nextInt());
+            } else if (book instanceof ComicBook) {
+                System.out.println("");
+                ((ComicBook) book).setCharacterName(sc.next());
+            }
+
+            books.add(book);
         }
 
-        for(int i =0;i<numberAnimals;i++) {
-            Animal animal = animals.get(i);
-            animal.feed();
-            animal.speak();
+
+        Bookstore store = new Bookstore();
+        store.setBooks(books);
+
+        for(int i =0;i<numBooks;i+=2) {
+            Book book = books.get(i);
+            store.sell(book);
         }
         sc.close();
 

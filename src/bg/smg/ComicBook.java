@@ -15,7 +15,12 @@ public class ComicBook extends Book {
         this.characterName = characterName;
     }
 
-
+    @Override
+    public double getPrice() {
+        double newPrice = super.getOriginalPrice()*0.4;
+        System.out.println("kniga e " + toString() + " e na cena" + newPrice);
+        return newPrice;
+    }
 
     @Override
     public String toString() {

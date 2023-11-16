@@ -39,7 +39,12 @@ public class Book {
 
     // getters and setters
     public double getPrice() {
+        System.out.println("kniga " + toString() + " se prodava na cena...." + originalPrice);
+        return originalPrice;
+    }
 
+    public double getPrice(double ots) {
+        System.out.println("kniga " + toString() + " se prodava na cena...." + originalPrice);
         return originalPrice;
     }
 
