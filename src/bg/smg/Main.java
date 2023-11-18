@@ -13,7 +13,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int numBooks = sc.nextInt();
 
-        for(int i = 0 ; i < numBooks; i++) {
+        for(int i=0 ; i < numBooks; i++) {
             Book book = null;
             int type=4;
             while (type<1 || type>3) {
@@ -25,20 +25,19 @@ public class Main {
                     case 2: book = new ChildrenBook();
                         book.setType(BookType.CHILDREN_BOOK);
                         System.out.print("Моля въведете възраст, за която е предназначена книгата: ");
-                    /* ComicBook comicBook=(ComicBook) book;
-                    comicBook.setCharacterName(sc.next());*/
+                        /* ComicBook comicBook=(ComicBook) book;
+                        comicBook.setCharacterName(sc.next());*/
                         ((ChildrenBook)book).setAge(sc.nextInt());
                         break;
                     case 3: book = new ComicBook();
                         book.setType(BookType.COMIC_BOOK);
                         System.out.print("Моля въведете име на героя: ");
-                    /* ComicBook comicBook=(ComicBook) book;
-                    comicBook.setCharacterName(sc.next());*/
+                        /* ComicBook comicBook=(ComicBook) book;
+                        comicBook.setCharacterName(sc.next());*/
                         ((ComicBook)book).setCharacterName(sc.next());
-
                         break;
                     case 1: book = new Book(); break;
-                    default: // излиза грешка, а не съобщението
+                    default:
                         System.out.println("Не въведохте тип книга <тип - Book/Children_book/Comic_book> ");
                 }
             }
@@ -52,7 +51,7 @@ public class Main {
 
             Author author = new Author(); // слага името и възрастта заедно, не ги отделя, но само при въведено заглавие разделно
 
-            System.out.print("Въведете име на автора: "); // проблем при въвеждането
+            System.out.print("Въведете име на автора: ");
             author.setName(sc.next());
 
             book.setAuthor(author);
@@ -60,7 +59,7 @@ public class Main {
             System.out.print("Въведете възраст на автора: ");
             author.setAge(sc.nextInt());
 
-            System.out.print("Въведете оригинална цена на книгата: "); // възниква грешка
+            System.out.print("Въведете оригинална цена на книгата: ");
             book.setOriginalPrice(sc.nextDouble());
 
             /* if(book instanceof ChildrenBook) {
@@ -71,13 +70,11 @@ public class Main {
                 ((ComicBook) book).setCharacterName(sc.next());
             } */
 
-            // System.out.println(book.toString());
+
             books.add(book);
 
         }
 
-
-        // System.out.println(book.toString());
 
         Bookstore store = new Bookstore();
         store.setBooks(books);
@@ -85,8 +82,6 @@ public class Main {
         for(int i=0 ; i < numBooks; /*i++*/ i+=2) {
             Book book = books.get(i);
             store.sell(book);
-            // System.out.println(store.sell(book));
-            // System.out.println(book.toString());
         }
         sc.close();
 
