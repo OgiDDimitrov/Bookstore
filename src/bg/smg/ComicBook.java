@@ -18,12 +18,19 @@ public class ComicBook extends Book {
     @Override
     public double getPrice() {
         double newPrice = super.getOriginalPrice()*0.4;
-        System.out.println("kniga e " + toString() + " e na cena" + newPrice);
+        System.out.println("Книгата " + toString() + " е намалена с 60% и е на цена: " + newPrice);
         return newPrice;
     }
 
     @Override
-    public String toString() {
+    public double getPrice(double ots) {
+        double newPrice = super.getOriginalPrice()*(1-ots/100);
+        System.out.println("Книгата " + toString() + " е намалена с " + ots + "% и е на цена: " + newPrice);
+        return newPrice;
+    }
+
+    // @Override
+    public String toString1() {
         return "ComicBook{" +
                 "characterName='" + characterName + '\'' +
                 '}';

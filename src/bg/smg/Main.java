@@ -6,57 +6,87 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
+
         List<Book> books = new ArrayList<>();
 
+        System.out.print("Въведете брой книги: ");
         Scanner sc = new Scanner(System.in);
         int numBooks = sc.nextInt();
 
-        for(int i = 0 ; i< numBooks; i++) {
-            Book book;
-            System.out.println("Въведете tip kniga: <тип-Book/Children_book/Comic_book> ");
-            BookType type = BookType.valueOf(sc.next().toUpperCase());
-            switch(type) {
-                case CHILDREN_BOOK: book = new ChildrenBook(); break;
-                case COMIC_BOOK: book = new ComicBook(); break;
-                default:
-                    System.out.println("Vuvedohte.....");
-                    book = new Book();
-                    break;
+        for(int i = 0 ; i < numBooks; i++) {
+            Book book = null;
+            int type=4;
+            while (type<1 || type>3) {
+                System.out.print("Въведете тип книга: '1'-Book/'2'-Children_book/'3'-Comic_book> ");
+                //BookType bbtype = BookType.COMIC_BOOK;
+                type  = sc.nextInt();
+
+                switch(type) {
+                    case 2: book = new ChildrenBook();
+                        book.setType(BookType.CHILDREN_BOOK);
+                        System.out.print("Моля въведете възраст, за която е предназначена книгата: ");
+                    /* ComicBook comicBook=(ComicBook) book;
+                    comicBook.setCharacterName(sc.next());*/
+                        ((ChildrenBook)book).setAge(sc.nextInt());
+                        break;
+                    case 3: book = new ComicBook();
+                        book.setType(BookType.COMIC_BOOK);
+                        System.out.print("Моля въведете име на героя: ");
+                    /* ComicBook comicBook=(ComicBook) book;
+                    comicBook.setCharacterName(sc.next());*/
+                        ((ComicBook)book).setCharacterName(sc.next());
+
+                        break;
+                    case 1: book = new Book(); break;
+                    default: // излиза грешка, а не съобщението
+                        System.out.println("Не въведохте тип книга <тип - Book/Children_book/Comic_book> ");
+                }
             }
-            System.out.println("");
+
+
+            System.out.print("Въведете бройка налични книги: ");
             book.setAvailable(sc.nextInt());
 
-            System.out.println("");
+            System.out.print("Въведете заглавие на книгата: "); // зачита само първата дума от заглавия с повече от една дума
             book.setTitle(sc.next());
 
-            System.out.println("");
-            Author author = new Author();
+            Author author = new Author(); // слага името и възрастта заедно, не ги отделя, но само при въведено заглавие разделно
+
+            System.out.print("Въведете име на автора: "); // проблем при въвеждането
             author.setName(sc.next());
 
-            System.out.println("");
+            book.setAuthor(author);
+
+            System.out.print("Въведете възраст на автора: ");
             author.setAge(sc.nextInt());
 
-            book.setAuthor(author);
+            System.out.print("Въведете оригинална цена на книгата: "); // възниква грешка
             book.setOriginalPrice(sc.nextDouble());
 
-            if(book instanceof ChildrenBook) {
-                System.out.println("");
+            /* if(book instanceof ChildrenBook) {
+                System.out.println("Въведете възраст, за която е предназначена книгата: ");
                 ((ChildrenBook) book).setAge(sc.nextInt());
             } else if (book instanceof ComicBook) {
-                System.out.println("");
+                System.out.println("Въведете име на героя: ");
                 ((ComicBook) book).setCharacterName(sc.next());
-            }
+            } */
 
+            // System.out.println(book.toString());
             books.add(book);
+
         }
 
+
+        // System.out.println(book.toString());
 
         Bookstore store = new Bookstore();
         store.setBooks(books);
 
-        for(int i =0;i<numBooks;i+=2) {
+        for(int i=0 ; i < numBooks; /*i++*/ i+=2) {
             Book book = books.get(i);
             store.sell(book);
+            // System.out.println(store.sell(book));
+            // System.out.println(book.toString());
         }
         sc.close();
 

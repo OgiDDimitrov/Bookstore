@@ -5,7 +5,7 @@ public class ChildrenBook extends Book {
 
 
     public ChildrenBook() {
-        super(); //ще го извика под разбиране (не е задължителен)
+        super(); // ще го извика под разбиране (не е задължителен)
         this.age = 0;
     }
 
@@ -14,9 +14,15 @@ public class ChildrenBook extends Book {
         this.age = age;
     }
 
-
     @Override
-    public String toString() {
+    public double getPrice() {
+        double newPrice = super.getOriginalPrice()*0.3;
+        System.out.println("Книгата " + toString() + " е намалена със 70% и е на цена: " + newPrice);
+        return newPrice;
+    }
+
+    // @Override
+    public String toString2() {
         return "ChildrenBook{" +
                 "age=" + age +
                 '}';

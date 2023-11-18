@@ -1,6 +1,8 @@
 package bg.smg;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
 public class Bookstore {
     private List<Book> books; // List е интерфейс, ArrayList е клас; books е обикновена променлива от тип List
 
@@ -16,11 +18,18 @@ public class Bookstore {
 
     public void sell(Book book){
         int av = book.getAvailable();
-        if(av>0){
-            System.out.println("Prodavame...." + book.toString() + book.getPrice());
+        if(av>0) {
+            if (book.getType()==BookType.COMIC_BOOK) {
+                System.out.print("Въведете % отстъпка за COMIC_BOOK: " );
+                Scanner sc = new Scanner(System.in);
+                double ots = sc.nextDouble();
+                System.out.println("Продаваме книгата " + book.toString() + " на цена: " + book.getPrice(ots));
+                book.getPrice(ots);
+            }
+            else System.out.println("Продаваме книгата " + book.toString() + " на цена: " + book.getPrice());
             book.setAvailable(av-1);
         } else {
-            System.out.println("nqma....");
+            System.out.println("Няма налични бройки!");
         }
     }
 
