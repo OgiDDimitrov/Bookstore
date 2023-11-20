@@ -5,8 +5,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
-
+        
         List<Book> books = new ArrayList<>();
 
         System.out.print("Въведете брой книги: ");
@@ -31,7 +30,7 @@ public class Main {
                         break;
                     case 3: book = new ComicBook();
                         book.setType(BookType.COMIC_BOOK);
-                        System.out.print("Моля въведете име на героя: ");
+                        System.out.print("Моля въведете име на героя (като 1 дума): ");
                         /* ComicBook comicBook=(ComicBook) book;
                         comicBook.setCharacterName(sc.next());*/
                         ((ComicBook)book).setCharacterName(sc.next());
@@ -46,12 +45,12 @@ public class Main {
             System.out.print("Въведете бройка налични книги: ");
             book.setAvailable(sc.nextInt());
 
-            System.out.print("Въведете заглавие на книгата: "); // зачита само първата дума от заглавия с повече от една дума
+            System.out.print("Въведете заглавие на книгата (като 1 дума): ");
             book.setTitle(sc.next());
 
-            Author author = new Author(); // слага името и възрастта заедно, не ги отделя, но само при въведено заглавие разделно
+            Author author = new Author();
 
-            System.out.print("Въведете име на автора: ");
+            System.out.print("Въведете име на автора (само фамилия): ");
             author.setName(sc.next());
 
             book.setAuthor(author);

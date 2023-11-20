@@ -17,6 +17,7 @@ public class ChildrenBook extends Book {
     @Override
     public double getPrice() {
         double newPrice = super.getOriginalPrice()*0.3;
+        System.out.println();
         System.out.println("Книгата " + toString() + " е намалена със 70% и е на цена: " + newPrice);
         return newPrice;
     }
