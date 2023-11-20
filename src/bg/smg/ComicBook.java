@@ -25,7 +25,6 @@ public class ComicBook extends Book {
     @Override
     public double getPrice(double ots) {
         double newPrice = super.getOriginalPrice()*(1-ots/100);
-        // System.out.println("Книгата " + toString() + " е намалена с " + ots + "% и е на цена: " + newPrice);
         return newPrice;
     }
 

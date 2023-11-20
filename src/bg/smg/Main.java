@@ -17,7 +17,6 @@ public class Main {
             int type=4;
             while (type<1 || type>3) {
                 System.out.print("Въведете тип книга: '1'-Book/'2'-Children_book/'3'-Comic_book> ");
-                //BookType bbtype = BookType.COMIC_BOOK;
                 type  = sc.nextInt();
 
                 switch(type) {
@@ -60,14 +59,6 @@ public class Main {
 
             System.out.print("Въведете оригинална цена на книгата: ");
             book.setOriginalPrice(sc.nextDouble());
-
-            /* if(book instanceof ChildrenBook) {
-                System.out.println("Въведете възраст, за която е предназначена книгата: ");
-                ((ChildrenBook) book).setAge(sc.nextInt());
-            } else if (book instanceof ComicBook) {
-                System.out.println("Въведете име на героя: ");
-                ((ComicBook) book).setCharacterName(sc.next());
-            } */
 
 
             books.add(book);
